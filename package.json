@@ -1,0 +1,18 @@
+{
+  "name": "ghidgen",
+  "version": "0.0.1",
+  "description": "Gherkin ID generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "TODO add test"
+  },
+  "author": "",
+  "bin": "./index.js",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "short-hash": "^1.0.0",
+    "yargs": "^17.7.2",
+    "yargs-interactive": "^3.0.1"
+  }
+}

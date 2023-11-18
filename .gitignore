@@ -47,3 +47,4 @@ temp/
 trash/
 
 .vscode/
+config.json

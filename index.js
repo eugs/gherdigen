@@ -39,10 +39,10 @@ function generateHashFor(inputString) {
 
 	if(config.productCode !== undefined) {
 		productCode = config.productCode;
-		console.log('got prefix from config');
+		console.log(`got prefix from config: '${productCode}'`);
 	} else if (process.env.CODE) {
 		productCode = process.env.CODE;
-		console.log('got prefix ENV');
+		console.log(`got prefix from ENV: '${productCode}'`);
 	} else {
 		console.log('no preffix applied');
 	}

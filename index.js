@@ -22,6 +22,7 @@ yargs
 	})
 	.command({
 		command: 'gen',
+		alias: 'generate',
 		describe: 'Generate an ID using given scenario name',
 		builder: {
 		},

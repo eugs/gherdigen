@@ -6,16 +6,18 @@
   "scripts": {
     "test": "TBD"
   },
-	"keywords": [
+  "keywords": [
     "cucumber",
     "BDD",
-		"gherkin",
-		"id",
-		"hashid",
-		"idgen"
+    "gherkin",
+    "id",
+    "hashid",
+    "idgen"
   ],
   "author": "",
-  "bin": "./index.js",
+  "bin": {
+    "ghidgen": "index.js"
+  },
   "license": "ISC",
   "dependencies": {
     "fs-extra": "^11.1.1",

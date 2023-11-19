@@ -1,11 +1,19 @@
 {
   "name": "ghidgen",
   "version": "0.0.1",
-  "description": "Gherkin ID generator",
+  "description": "Gherkin short hash ID generator",
   "main": "index.js",
   "scripts": {
-    "test": "TODO add test"
+    "test": "TBD"
   },
+	"keywords": [
+    "cucumber",
+    "BDD",
+		"gherkin",
+		"id",
+		"hashid",
+		"idgen"
+  ],
   "author": "",
   "bin": "./index.js",
   "license": "ISC",

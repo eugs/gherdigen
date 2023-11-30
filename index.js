@@ -4,6 +4,7 @@ const yargs = require('yargs');
 const { saveToConfig } = require('./utils/fs.helper');
 const { generateID } = require('./utils/generator');
 const { promptCode, promptName } = require('./prompts');
+const { updateScenario } = require('./main');
 
 yargs
 	.command({
@@ -34,7 +35,7 @@ yargs
 		},
 		handler: async function (argv) {
 			const name = await promptName();
-			generateID(name);
+			updateScenario(name);
 		}
 	})
 

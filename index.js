@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
-const yargsInteractive = require('yargs-interactive');
 
 const { saveToConfig } = require('./utils/fs.helper');
 const { generateID } = require('./utils/generator');
+const { promptCode, promptName } = require('./prompts');
 
 yargs
 	.command({
@@ -39,35 +39,3 @@ yargs
 	})
 
 yargs.parse();
-
-
-async function promptName() {
-	const options = {
-		name: {
-			type: "input",
-			describe: "Enter Scenario name (or leave empty)"
-		},
-		interactive: {
-			default: true
-		}
-	};
-
-	const result = await yargsInteractive().usage("$0 <command> [args]").interactive(options)
-	return result['name']
-}
-
-async function promptCode() {
-	const options = {
-		code: {
-			type: "input",
-			describe: "Enter Product Code or another prefix (or leave empty)"
-		},
-		interactive: {
-			default: true
-		}
-	};
-
-	const result = await yargsInteractive().usage("$0 <command> [args]").interactive(options)
-	return result['code'];
-}
-

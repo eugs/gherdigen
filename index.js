@@ -1,12 +1,9 @@
 #!/usr/bin/env node
-const shortHash = require('short-hash');
 const yargs = require('yargs');
 const yargsInteractive = require('yargs-interactive');
-const fsx = require('fs-extra');
 
-const NAME_REGEX = /^(Scenario|Scenario Outline)(\s*|\t*)?\:(\s*|\t*)?/gim;
-const path = require('path');
-const CONFIG_PATH = path.resolve(__dirname, 'config.json');
+const { saveToConfig } = require('./utils/fs.helper');
+const { generateID } = require('./utils/generator');
 
 yargs
 	.command({
@@ -27,50 +24,22 @@ yargs
 		},
 		handler: async function (argv) {
 			const name = await promptName();
-			generate(name);
+			generateID(name);
+		}
+	})
+	.command({
+		command: 'upd', // TODO rename
+		describe: 'Update given scenario in file',
+		builder: {
+		},
+		handler: async function (argv) {
+			const name = await promptName();
+			generateID(name);
 		}
 	})
 
 yargs.parse();
 
-function generateHashFor(inputString) {
-	let productCode = '';
-	const config = getConfig();
-
-	if(config.productCode !== undefined) {
-		productCode = config.productCode;
-		console.log(`got prefix from config: '${productCode}'`);
-	} else if (process.env.CODE) {
-		productCode = process.env.CODE;
-		console.log(`got prefix from ENV: '${productCode}'`);
-	} else {
-		console.log('no preffix applied');
-	}
-
-	const currentMs = new Date();
-	const combinedString = `${productCode}${inputString}${currentMs}`;
-	const hash = shortHash(combinedString);
-	return `@${productCode}${hash}`;
-}
-
-function generate(name) {
-	console.log(`given string: '${name}'`);
-
-	name = cleanUpName(name);
-	const generatedID = generateHashFor(name);
-
-	// console.log(`\nGiven scenario:\n"${name}"`);
-	console.log(`====`);
-	console.log(`ID:\n${generatedID}`);
-	console.log(`====`);
-	return generatedID;
-}
-
-function cleanUpName(name) {
-	name = name.trim();
-	name = name.replace(NAME_REGEX, '');
-	return name;
-}
 
 async function promptName() {
 	const options = {
@@ -102,17 +71,3 @@ async function promptCode() {
 	return result['code'];
 }
 
-function saveToConfig(key, value) {
-	const config = getConfig();
-	config[key] = value;
-	fsx.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 3));
-}
-
-function getConfig() {
-	if(!fsx.pathExistsSync(CONFIG_PATH)) {
-		fsx.writeJSONSync(CONFIG_PATH, {
-			productCode: ''
-		});
-	}
-	return require(CONFIG_PATH);
-}

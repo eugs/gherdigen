@@ -42,7 +42,7 @@ function updateScenario(scenarioName) {
 
 	const tag = generateID(scenarioName);
 
-	console.log(`\n...will try to update in file:\n${FEATURES_PATH}`);
+	console.log(`\n...will try to update in file:\n${parentFeature[0]}`);
 
 	try {
 		const updatedText = insertTagTo(scenarioName, tag, parentFeature[0]);
@@ -54,7 +54,7 @@ function updateScenario(scenarioName) {
 	console.log('====');
 	console.log('SUCESS!');
 	console.log('====');
-	console.log(`tag ${tag}\nwas added to scenario:\n${scenarioName}`);
+	console.log(`tag\t"${tag}"\nwas added to scenario:\t${scenarioName}`);
 }
 
 module.exports = {

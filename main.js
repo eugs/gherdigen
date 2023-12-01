@@ -1,10 +1,12 @@
 
 const path = require('path');
 
-const { scanDir, getFeatureText, saveFeatureText } = require('./utils/fs.helper');
+const { scanDir, getFeatureText, saveFeatureText, getConfig } = require('./utils/fs.helper');
 const { insertTagTo } = require('./utils/text.helper');
 const { generateID } = require('./utils/generator');
-const FEATURES_DIR = './features';
+const config = getConfig();
+
+const FEATURES_DIR = config['featuresDir'] || './features';
 const FEATURES_PATH = path.resolve(__dirname, FEATURES_DIR);
 
 function updateScenario(scenarioName) {

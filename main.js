@@ -51,7 +51,10 @@ function updateScenario(scenarioName) {
 		console.error(`scenario wasn't updated, some error occured\n${err.message}`);
 	}
 
-	console.log(`tag ${tag}\nwas successfully added to scenario:\n${scenarioName}`);
+	console.log('====');
+	console.log('SUCESS!');
+	console.log('====');
+	console.log(`tag ${tag}\nwas added to scenario:\n${scenarioName}`);
 }
 
 module.exports = {

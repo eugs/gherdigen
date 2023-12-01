@@ -1,7 +1,9 @@
 
 const path = require('path');
 
-const { scanDir, getFeatureText } = require('./utils/fs.helper');
+const { scanDir, getFeatureText, saveFeatureText } = require('./utils/fs.helper');
+const { insertTagTo } = require('./utils/text.helper');
+const { generateID } = require('./utils/generator');
 const FEATURES_DIR = './features';
 const FEATURES_PATH = path.resolve(__dirname, FEATURES_DIR);
 
@@ -19,7 +21,7 @@ function updateScenario(scenarioName) {
 		throw new Error(`Haven't found any features in ${FEATURES_PATH}`);
 	}
 
-	const filtered = [];
+	const parentFeature = [];
 	
 	features.forEach((feature) => {
 		const text = getFeatureText(feature);
@@ -27,19 +29,19 @@ function updateScenario(scenarioName) {
 		const match = text.match(regex);
 		if (match) {
 			for(let i = 0; i < match.length; i++) {
-				filtered.push(feature);
+				parentFeature.push(feature);
 			}
 		}
 	});
 
-	if (filtered.length !== 1) {
-		throw new Error(`Found ${filtered.length} scenarios with name "${scenarioName}" in ${FEATURES_PATH}`);
+	if (parentFeature.length !== 1) {
+		throw new Error(`Found ${parentFeature.length} scenarios with name "${scenarioName}" in ${FEATURES_PATH}`);
 	}
 
 		// generateID
-
-		// updateScenario
-
+		const tag = generateID(scenarioName);
+		const updatedText = insertTagTo(scenarioName, tag, parentFeature[0]);
+		saveFeatureText(parentFeature[0], updatedText);
 }
 
 module.exports = {

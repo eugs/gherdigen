@@ -9,8 +9,25 @@ const { updateScenario } = require('./main');
 
 yargs
 	.command({
+		command: '$0',
+		alias: 'config',
+		describe: 'Set up required configuration',
+		builder: {
+		},
+		handler: async function (argv) {
+			const dir = await promptDir();
+			const fullPath = path.resolve(process.cwd(), dir);
+			saveToConfig('featuresDir', fullPath);
+
+			const code = await promptCode();
+			saveToConfig('productCode', code);
+
+			console.log(`now you can use "gen" or "upd" commands`)
+		}
+	})
+
+	.command({
 		command: 'code',
-		alias: 'code',
 		describe: 'Set product code as prefix (if required)',
 		builder: {
 		},
@@ -22,7 +39,6 @@ yargs
 
 	.command({
 		command: 'dir',
-		alias: 'dir',
 		describe: 'Set up features directory (required)',
 		builder: {
 		},

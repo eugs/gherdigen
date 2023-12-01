@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
+const path = require('path');
 
 const { saveToConfig } = require('./utils/fs.helper');
 const { generateID } = require('./utils/generator');
@@ -27,7 +28,8 @@ yargs
 		},
 		handler: async function (argv) {
 			const dir = await promptDir();
-			saveToConfig('featuresDir', dir);
+			const fullPath = path.resolve(process.cwd(), dir);
+			saveToConfig('featuresDir', fullPath);
 		}
 	})
 

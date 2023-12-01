@@ -3,14 +3,14 @@ const yargs = require('yargs');
 
 const { saveToConfig } = require('./utils/fs.helper');
 const { generateID } = require('./utils/generator');
-const { promptCode, promptName } = require('./prompts');
+const { promptCode, promptName, promptDir } = require('./prompts');
 const { updateScenario } = require('./main');
 
 yargs
 	.command({
-		command: '$0',
-		alias: 'start',
-		describe: 'Set up required information',
+		command: 'code',
+		alias: 'code',
+		describe: 'Set product code as prefix (if required)',
 		builder: {
 		},
 		handler: async function (argv) {
@@ -18,6 +18,19 @@ yargs
 			saveToConfig('productCode', code);
 		}
 	})
+
+	.command({
+		command: 'dir',
+		alias: 'dir',
+		describe: 'Set up features directory (required)',
+		builder: {
+		},
+		handler: async function (argv) {
+			const dir = await promptDir();
+			saveToConfig('featuresDir', dir);
+		}
+	})
+
 	.command({
 		command: 'gen',
 		describe: 'Generate an ID using given scenario name',
@@ -28,6 +41,7 @@ yargs
 			generateID(name);
 		}
 	})
+
 	.command({
 		command: 'upd', // TODO rename
 		describe: 'Update given scenario in file',

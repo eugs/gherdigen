@@ -14,7 +14,7 @@ function updateScenario(scenarioName) {
 	try {
 		features.push(...scanDir(FEATURES_PATH));
 	} catch (err) {
-		// TODO msg
+		console.error(`Error while scanning ${FEATURES_PATH}`);
 	}
 
 	if (features.length === 0) {
@@ -22,13 +22,13 @@ function updateScenario(scenarioName) {
 	}
 
 	const parentFeature = [];
-	
+
 	features.forEach((feature) => {
 		const text = getFeatureText(feature);
 		const regex = new RegExp(scenarioName, 'gim')
 		const match = text.match(regex);
 		if (match) {
-			for(let i = 0; i < match.length; i++) {
+			for (let i = 0; i < match.length; i++) {
 				parentFeature.push(feature);
 			}
 		}
@@ -38,10 +38,18 @@ function updateScenario(scenarioName) {
 		throw new Error(`Found ${parentFeature.length} scenarios with name "${scenarioName}" in ${FEATURES_PATH}`);
 	}
 
-		// generateID
-		const tag = generateID(scenarioName);
+	const tag = generateID(scenarioName);
+
+	console.log(`\n...will try to update in file:\n${FEATURES_PATH}`);
+
+	try {
 		const updatedText = insertTagTo(scenarioName, tag, parentFeature[0]);
 		saveFeatureText(parentFeature[0], updatedText);
+	} catch (err) {
+		console.error(`scenario wasn't updated, some error occured\n${err.message}`);
+	}
+
+	console.log(`tag ${tag}\nwas successfully added to scenario:\n${scenarioName}`);
 }
 
 module.exports = {

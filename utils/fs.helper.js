@@ -46,9 +46,14 @@ function getFeatureText(path) {
 	return fsx.readFileSync(path, 'utf8');
 }
 
+function saveFeatureText(path, updatedText) {
+	return fs.writeFileSync(path, updatedText, 'utf8');
+}
+
 module.exports = {
 	saveToConfig,
 	getConfig,
 	scanDir,
-	getFeatureText
+	getFeatureText,
+	saveFeatureText
 }

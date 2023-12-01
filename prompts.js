@@ -30,7 +30,23 @@ async function promptCode() {
 	return result['code'];
 }
 
+async function promptDir() {
+	const options = {
+		dir: {
+			type: "input",
+			describe: "Enter path to features directory (e.g. ./features)"
+		},
+		interactive: {
+			default: true
+		}
+	};
+
+	const result = await yargsInteractive().usage("$0 <command> [args]").interactive(options)
+	return result['dir'];
+}
+
 module.exports = {
 	promptCode,
-	promptName
+	promptName,
+	promptDir
 }

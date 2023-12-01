@@ -34,7 +34,7 @@ async function promptDir() {
 	const options = {
 		dir: {
 			type: "input",
-			describe: "Enter path to features directory (e.g. ./features)"
+			describe: "Enter path to features directory (related to current dir e.g. features)"
 		},
 		interactive: {
 			default: true

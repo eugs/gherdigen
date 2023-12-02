@@ -1,6 +1,6 @@
 {
   "name": "ghidgen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gherkin short hash ID generator",
   "main": "index.js",
   "scripts": {

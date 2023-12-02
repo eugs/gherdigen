@@ -1,6 +1,7 @@
 const fsx = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
+const { STATUS_ARG_MSG }  = require('../utils/colors/messages.map');
 
 const CONFIG_PATH = path.resolve(__dirname, 'config.json');
 
@@ -8,6 +9,7 @@ function saveToConfig(key, value) {
 	const config = getConfig();
 	config[key] = value;
 	fsx.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 3));
+	console.log(STATUS_ARG_MSG('saved to config: ', value));
 }
 
 function getConfig() {

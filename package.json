@@ -1,7 +1,7 @@
 {
   "name": "ghidgen",
-  "version": "0.0.2",
-  "description": "Gherkin short hash ID generator",
+  "version": "0.0.3",
+  "description": "Gherkin short hash ID generator with colored logs and scenarios auto-update",
   "main": "index.js",
   "scripts": {
     "test": "TBD"
@@ -20,6 +20,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "cli-color": "^2.0.3",
     "fs-extra": "^11.1.1",
     "short-hash": "^1.0.0",
     "yargs": "^17.7.2",

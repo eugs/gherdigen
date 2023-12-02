@@ -6,6 +6,8 @@ const { saveToConfig } = require('./utils/fs.helper');
 const { generateID } = require('./utils/generator');
 const { promptCode, promptName, promptDir } = require('./prompts');
 const { updateScenario } = require('./main');
+const { STATUS_MSG }  = require('./utils/colors/messages.map');
+
 
 yargs
 	.command({
@@ -22,7 +24,7 @@ yargs
 			const code = await promptCode();
 			saveToConfig('productCode', code);
 
-			console.log(`now you can use "gen" or "upd" commands`)
+			console.log(STATUS_MSG('now you can use "gen" or "upd" commands'));
 		}
 	})
 

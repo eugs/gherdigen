@@ -1,6 +1,6 @@
 {
   "name": "ghidgen",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Gherkin short hash ID generator with colored logs and scenarios auto-update",
   "main": "index.js",
   "scripts": {

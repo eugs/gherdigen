@@ -1,17 +1,23 @@
+## **Gh**erkin **ID** **Gen**erator
+[![version](https://img.shields.io/npm/v/ghidgen)](https://www.npmjs.org/package/ghidgen)
+
 **Gh**erkin **ID** **Gen**erator
 
-A simplest quick hash generator for Gherkin scenarios with colored output
+### A simplest quick hash generator for Gherkin scenarios with colored output
 
-Can receive a prefix and generate a short hash using it and current time using [short-hash](https://www.npmjs.com/package/short-hash)
+Receives a prefix and generate a short hash using it and current time using [short-hash](https://www.npmjs.com/package/short-hash)
 
 *Example*: *@ABCf178f8bf*
 
+<img src="https://github.com/eugs/ghidgen/blob/main/assets/gif/upd-demo.gif?raw=true" width="700">
+
+
 You can just copy generated code from the console or update your scenario automatically
 
-#### Why?
+### Why?
 To generate a short ids for Cucumber scenarios which may help to find them easier in TAF (when added as a Cucumber tag)
 
-#### Configure
+### Configure
 ```
 npx ghidgen
 ```
@@ -20,9 +26,9 @@ npx ghidgen
 
 *Add product code (if desired)*
 
-#### Usage
+### Usage
 
-##### To update a scenario 
+#### To update a scenario 
 ```
 npx ghidgen upd
 ```
@@ -30,20 +36,20 @@ npx ghidgen upd
 *Provide scenario name*
 
 
-##### To just generate a Cucumber tag
+#### To just generate a Cucumber tag
 ```
 npx ghidgen gen
 ```
 
 
-#### Additional
+### Additional
 
-##### To update features folder
+#### To update features folder
 ```
 npx ghidgen dir
 ```
 
-##### To set a new product code
+#### To set a new product code
 ```
 npx ghidgen code
 ```
